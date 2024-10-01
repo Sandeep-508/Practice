@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triple Vertical Slider</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+            max-height: 800px;
+            overflow: hidden !important;
+        }
+
+        .swiper-container {
+            width: 32.5%;
+            max-height: 800px !important;
+        }
+
+        .swiper-slide {
+            background: #2a2a2a;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stars {
+            color: #00ff00;
+        }
+
+        .name {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="swiper-container swiper1">
+            <div class="swiper-wrapper">
+            </div>
+        </div>
+        <div class="swiper-container swiper2">
+            <div class="swiper-wrapper">
+            </div>
+        </div>
+        <div class="swiper-container swiper3">
+            <div class="swiper-wrapper">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        function createSlides(count) {
+            return Array(count).fill().map((_, i) => `
+                <div class="swiper-slide">
+                    <div class="stars">★★★★★</div>
+                    <div class="content">
+                        "Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper."
+                    </div>
+                    <div class="name">Nom prénom</div>
+                </div>
+            `).join('');
+        }
+
+        document.querySelectorAll('.swiper-wrapper').forEach(el => {
+            el.innerHTML = createSlides(10);
+        });
+
+        const commonConfig = {
+            direction: 'vertical',
+            loop: true,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            },
+            speed: 3000,
+            slidesPerView: 3,
+            spaceBetween: 20,
+        };
+
+        new Swiper('.swiper1', commonConfig);
+        new Swiper('.swiper2', {
+            ...commonConfig,
+            autoplay: {
+                ...commonConfig.autoplay,
+                reverseDirection: true
+            }
+        });
+        new Swiper('.swiper3', commonConfig);
+    </script>
+</body>
+
+</html>
