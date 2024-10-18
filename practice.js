@@ -15,3 +15,11 @@ const handleRoots = () => {
     root.innerHTML += `Roots : ${array}`
     root.classList.remove("hidden")
 }
+let triangleIcon = "";
+for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+        triangleIcon += "*";
+    }
+    triangleIcon += "\n";
+}
+console.log(triangleIcon);
